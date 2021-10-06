@@ -1,6 +1,7 @@
 from turtle import Screen, Turtle, register_shape, listen, onkey
 import random
 import math
+import winsound
 
 ws = Screen()
 ws.bgcolor('black')
@@ -50,6 +51,7 @@ score = 0
 def start_fire():
     global bullet_status
     if bullet_status == 'ready':
+        winsound.PlaySound('lazer.wav', winsound.SND_ASYNC)
         bullet_status = 'fire'
         bullet.setposition(player.xcor(), player.ycor() + 30)
         bullet.showturtle()
@@ -152,6 +154,7 @@ while True:
             list_invaders.append(invader)
             ws.tracer(1)
         if collision(list_invaders[i1], bullet):
+            winsound.PlaySound('explosion.wav', winsound.SND_ASYNC)
             score += 10
             writer.clear()
             write_score()
